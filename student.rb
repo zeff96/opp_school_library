@@ -1,12 +1,14 @@
-require_relative 'person';
+require_relative 'person'
 
 class Student < Person
-  def initialize(age, classrom, name = "Unknown", parent_permission = true)
+  attr_accessor :classrom
+
+  def initialize(age, classroom, name: 'Unknown', parent_permission: true)
     super(age, name, parent_permission)
-    @classrom = classrom
+    @classrom = classroom
   end
 
   def play_hooky
-    "¯\(ツ)/¯"
+    '¯(ツ)/¯'
   end
 end
