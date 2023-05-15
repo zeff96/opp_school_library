@@ -10,7 +10,7 @@ class Person
   end
 
   def can_use_services?
-    return true if @ge || @parent_permission
+    return true if @ge >= 18 || @parent_permission
     false
   end
 
@@ -21,6 +21,3 @@ class Person
     false
   end
 end
-
-person = Person.new(18, "Adeka", false)
-person.of_age?
