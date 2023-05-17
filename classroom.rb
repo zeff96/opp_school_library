@@ -1,5 +1,3 @@
-require_relative 'student'
-
 class Classroom
   attr_accessor :label, :student
 
