@@ -14,3 +14,26 @@ def list_options
 
   OPTIONS
 end
+
+def handle_option(option, app)
+  case option
+  when 3
+    app.create_person('student')
+  when 4
+    app.create_person('teacher')
+  when 5
+    app.create_book
+  when 6
+    app.create_rental
+  when 7
+    person_id = prompt_input('Enter person ID:').to_i
+    app.list_person_rentals(person_id)
+  when 8
+    puts 'Thanks! Exiting...'
+    return false
+  else
+    puts 'Invalid number :('
+  end
+
+  true
+end
