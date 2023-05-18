@@ -32,3 +32,9 @@ class App
     puts "#{type.capitalize} created successfully!"
   end
 
+  def create_book
+    title = prompt_input('Title:')
+    author = prompt_input('Author:')
+    @books << Book.new(title, author)
+    puts "Book created successfully!"
+  end
