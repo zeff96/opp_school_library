@@ -10,23 +10,31 @@ class App
   end
 
   def list_all_books
-    display_items(@books) {|book| "Title: #{book.title}   Author: #{book.author}"}
+    @books.each do |book|
+      puts "Title: #{book.title}   Author: #{book.author}"
+    end
   end
 
-  def list_all_peoples
-    display_items(@people) do |person|
-      "[#{person.class.name}] Name: #{person.name} ID: #{person.id} Age: #{person.age}"
+  def list_all_people
+    @people.each do |person|
+      puts "[#{person.class.name}] Name: #{person.name} ID: #{person.id} Age: #{person.age}"
     end
   end
 
   def create_person(type)
-    person_info = collect_person_info(type)
-    return unless person_info
+    age = prompt_input('Age:').to_i
+    name = prompt_input('Name:')
+    specialization = type.downcase == 'teacher' ? prompt_input('Specialization:') : nil
+    parent_permission = prompt_yes_no('Has parent permission?')
 
-    if type == 'Teacher'
-      @people << Teacher.new(*person_info)
-    elsif type == 'Student'
-      @people << Student.new(*person_info)
+    case type.downcase
+    when 'teacher'
+      @people << Teacher.new(age, specialization, name: name, parent_permission: parent_permission)
+    when 'student'
+      @people << Student.new(age, name: name, parent_permission: parent_permission)
+    else
+      puts "Invalid person type: #{type}"
+      return
     end
 
     puts "#{type.capitalize} created successfully!"
@@ -36,60 +44,44 @@ class App
     title = prompt_input('Title:')
     author = prompt_input('Author:')
     @books << Book.new(title, author)
-    puts "Book created successfully!"
+    puts 'Book created successfully!'
   end
 
   def create_rental
-    book = prompt_selection('book', @books)
-    person = prompt_selection('person', @people)
-    return unless book && person
-
-    date = prompt_input('Date:')
-    Rental.new(book, person, date)
-    puts "Rental created succesfully!"
+    puts 'Select a book from the following list by number'
+    @books.each.with_index { |book, idx| puts "#{idx}) Book #{book.title} by #{book.author}" }
+    book_index = gets.chomp.to_i
+    puts 'Select a person from the following list by number (not ID)'
+    @people.each.with_index do |person, idx|
+      puts "#{idx}) [#{person.class.name}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    end
+    person_index = gets.chomp.to_i
+    puts 'Date:'
+    date = gets.chomp
+    Rental.new(date, @books[book_index], @people[person_index])
+    puts 'Rental created successfully!'
   end
 
-  def list_person_rentals(person.id)
-    person = @people.find{|p| p.id == person.id}
+  def list_person_rentals(person_id)
+    person = @people.find { |p| p.id == person_id }
 
     if person
       puts 'Rentals:'
-      display_items(person.rentals) {|rental| "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"}
+      person.rental.each do |rental|
+        puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"
+      end
     else
-      puts "Person not found!"
+      puts 'Person not found!'
     end
-  end
-
-  private
-
-  def display_items(items)
-    items.each{|item| puts yield(item)}
-  end
-
-  def collect_person_info(type)
-    age = prompt_input('Age:')
-    name = prompt_input('Name:')
-    parent_permission = prompt_yes_no('Has parent permission?')
-    specialization = (type == 'teacher') ? prompt_input('Specialization:') : nil
-
-    [age, name, parent_permission, specialization]
-  end
-
-  def prompt_input(message)
-    puts message
-    gets.chomp
   end
 
   def prompt_yes_no(message)
     val = prompt_input("#{message} (Y/N)").downcase
     %w[y yes].include?(val)
   end
+end
 
-  def prompt_selection(label, options)
-    puts "Select a #{label} from the following list by number:"
-    display_items(options.with_index) { |item, index| "#{index}) #{item}" }
-
-    index = prompt_input.to_i
-    options[index]
-  end
+def prompt_input(message)
+  puts message
+  gets.chomp
 end
