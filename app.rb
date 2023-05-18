@@ -48,3 +48,14 @@ class App
     Rental.new(book, person, date)
     puts "Rental created succesfully!"
   end
+
+  def list_person_rentals(person.id)
+    person = @people.find{|p| p.id == person.id}
+
+    if person
+      puts 'Rentals:'
+      display_items(person.rentals) {|rental| "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"}
+    else
+      puts "Person not found!"
+    end
+  end
