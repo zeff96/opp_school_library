@@ -74,3 +74,8 @@ class App
 
     [age, name, parent_permission, specialization]
   end
+
+  def prompt_input(message)
+    puts message
+    gets.chomp
+  end
