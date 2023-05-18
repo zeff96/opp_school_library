@@ -59,3 +59,9 @@ class App
       puts "Person not found!"
     end
   end
+
+  private
+
+  def display_items(items)
+    items.each{|item| puts yield(item)}
+  end
