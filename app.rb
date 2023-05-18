@@ -38,3 +38,13 @@ class App
     @books << Book.new(title, author)
     puts "Book created successfully!"
   end
+
+  def create_rental
+    book = prompt_selection('book', @books)
+    person = prompt_selection('person', @people)
+    return unless book && person
+
+    date = prompt_input('Date:')
+    Rental.new(book, person, date)
+    puts "Rental created succesfully!"
+  end
