@@ -19,4 +19,16 @@ class App
     end
   end
 
- 
+  def create_person(type)
+    person_info = collect_person_info(type)
+    return unless person_info
+
+    if type == 'Teacher'
+      @people << Teacher.new(*person_info)
+    elsif type == 'Student'
+      @people << Student.new(*person_info)
+    end
+
+    puts "#{type.capitalize} created successfully!"
+  end
+
