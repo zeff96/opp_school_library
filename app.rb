@@ -65,3 +65,12 @@ class App
   def display_items(items)
     items.each{|item| puts yield(item)}
   end
+
+  def collect_person_info(type)
+    age = prompt_input('Age:')
+    name = prompt_input('Name:')
+    parent_permission = prompt_yes_no('Has parent permission?')
+    specialization = (type == 'teacher') ? prompt_input('Specialization:') : nil
+
+    [age, name, parent_permission, specialization]
+  end
