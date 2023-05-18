@@ -84,3 +84,12 @@ class App
     val = prompt_input("#{message} (Y/N)").downcase
     %w[y yes].include?(val)
   end
+
+  def prompt_selection(label, options)
+    puts "Select a #{label} from the following list by number:"
+    display_items(options.with_index) { |item, index| "#{index}) #{item}" }
+
+    index = prompt_input.to_i
+    options[index]
+  end
+end
