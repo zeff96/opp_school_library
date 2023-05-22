@@ -21,28 +21,41 @@ class App
     end
   end
 
-  def create_person(type)
-    age = prompt_input('Age:').to_i
-    name = prompt_input('Name:')
-    specialization = type.downcase == 'teacher' ? prompt_input('Specialization:') : nil
+  def create_person_prompt
+    person_type = prompt_input('Do you want to create a Student(1) or a Teacher(2)? [input the number]: ').to_i
+    case person_type
+    when 1
+      create_student
+    when 2
+      create_teacher
+    else
+      puts 'Invalid option :('
+    end
+  end
+
+  def create_student
+    age = prompt_input('Age: ').to_i
+    name = prompt_input('Name: ')
     parent_permission = prompt_yes_no('Has parent permission?')
 
-    case type.downcase
-    when 'teacher'
-      @people << Teacher.new(age, specialization, name: name, parent_permission: parent_permission)
-    when 'student'
-      @people << Student.new(age, name: name, parent_permission: parent_permission)
-    else
-      puts "Invalid person type: #{type}"
-      return
-    end
+    student = Student.new(age, name: name, parent_permission: parent_permission)
+    @people << student unless student.nil?
+    puts 'Student created succesfully!'
+  end
 
-    puts "#{type.capitalize} created successfully!"
+  def create_teacher
+    age = prompt_input('Age: ').to_i
+    name = prompt_input('Name: ')
+    specialization = prompt_input('Specialization: ')
+
+    teacher = Teacher.new(age, specialization, name: name)
+    @people << teacher unless teacher.nil?
+    puts 'Teacher created successfully!'
   end
 
   def create_book
-    title = prompt_input('Title:')
-    author = prompt_input('Author:')
+    title = prompt_input('Title: ')
+    author = prompt_input('Author: ')
     @books << Book.new(title, author)
     puts 'Book created successfully!'
   end
@@ -56,10 +69,14 @@ class App
       puts "#{idx}) [#{person.class.name}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
     person_index = gets.chomp.to_i
-    puts 'Date:'
-    date = gets.chomp
+    date = prompt_input('Date: ').to_i
     Rental.new(date, @books[book_index], @people[person_index])
     puts 'Rental created successfully!'
+  end
+
+  def list_person_rentals_prompt
+    person_id = prompt_input('Enter person ID: ').to_i
+    list_person_rentals(person_id)
   end
 
   def list_person_rentals(person_id)
@@ -75,13 +92,19 @@ class App
     end
   end
 
+  def exit_program
+    puts 'Thanks! Exiting...'
+  end
+
+  private
+
+  def prompt_input(message)
+    print message
+    gets.chomp
+  end
+
   def prompt_yes_no(message)
-    val = prompt_input("#{message} (Y/N)").downcase
+    val = prompt_input("#{message} (Y/N): ").downcase
     %w[y yes].include?(val)
   end
-end
-
-def prompt_input(message)
-  puts message
-  gets.chomp
 end
