@@ -4,7 +4,7 @@ OPTIONS = {
   3 => { label: 'Create a person', action: :create_person_prompt },
   4 => { label: 'Create a book', action: :create_book },
   5 => { label: 'Create a rental', action: :create_rental },
-  6 => { label: 'List all rentals for a given person ID', action: :list_person_rentals },
+  6 => { label: 'List all rentals for a given person ID', action: :list_person_rentals_prompt },
   7 => { label: 'Exit', action: :exit_program }
 }.freeze
 
