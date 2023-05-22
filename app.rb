@@ -22,7 +22,7 @@ class App
   end
 
   def create_person_prompt
-    person_type = person_type = prompt_input('Do you want to create a Student(1) or a Teacher(2)? [input the number]: ').to_i
+    person_type = prompt_input('Do you want to create a Student(1) or a Teacher(2)? [input the number]: ').to_i
     case person_type
     when 1
       create_person('student')
@@ -37,7 +37,7 @@ class App
     age = prompt_input('Age:').to_i
     name = prompt_input('Name:')
     specialization = type.downcase == 'teacher' ? prompt_input('Specialization:') : nil
-    parent_permission = type.downcase == 'student' ? prompt_yes_no('Has parent permission?'): nil
+    parent_permission = type.downcase == 'student' ? prompt_yes_no('Has parent permission?') : nil
 
     case type.downcase
     when 'teacher'

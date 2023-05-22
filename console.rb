@@ -1,11 +1,11 @@
 OPTIONS = {
-  1 => {label: 'List all books', action: :list_all_books},
-  2 => {label: 'List all people', action: :list_all_people},
-  3 => {label: 'Create a person', action: :create_person_prompt},
-  4 => {label: 'Create a book', action: :create_book},
-  5 => {label: 'Create a rental', action: :create_rental},
-  6 => {label: 'List all rentals for a given person ID', action: :list_person_rentals},
-  7 => {label: 'Exit', action: :exit_program}
+  1 => { label: 'List all books', action: :list_all_books },
+  2 => { label: 'List all people', action: :list_all_people },
+  3 => { label: 'Create a person', action: :create_person_prompt },
+  4 => { label: 'Create a book', action: :create_book },
+  5 => { label: 'Create a rental', action: :create_rental },
+  6 => { label: 'List all rentals for a given person ID', action: :list_person_rentals },
+  7 => { label: 'Exit', action: :exit_program }
 }.freeze
 
 class Menu
@@ -15,7 +15,7 @@ class Menu
 
   def display
     puts "\nPlease choose an option by entering a number:"
-    OPTIONS.each {|number, option| puts "#{number} - #{option[:label]}"}
+    OPTIONS.each { |number, option| puts "#{number} - #{option[:label]}" }
   end
 
   def handle_selection(selection)
