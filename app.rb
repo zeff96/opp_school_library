@@ -21,22 +21,34 @@ class App
     end
   end
 
+  def create_person_prompt
+    person_type = person_type = prompt_input('Do you want to create a Student(1) or a Teacher(2)? [input the number]: ').to_i
+    case person_type
+    when 1
+      create_person('student')
+    when 2
+      create_person('teacher')
+    else
+      puts 'Invalid option :('
+    end
+  end
+
   def create_person(type)
     age = prompt_input('Age:').to_i
     name = prompt_input('Name:')
     specialization = type.downcase == 'teacher' ? prompt_input('Specialization:') : nil
-    parent_permission = prompt_yes_no('Has parent permission?')
+    parent_permission = type.downcase == 'student' ? prompt_yes_no('Has parent permission?'): nil
 
     case type.downcase
     when 'teacher'
-      @people << Teacher.new(age, specialization, name: name, parent_permission: parent_permission)
+      person = Teacher.new(age, specialization, name: name)
     when 'student'
-      @people << Student.new(age, name: name, parent_permission: parent_permission)
+      person = Student.new(age, name: name, parent_permission: parent_permission)
     else
       puts "Invalid person type: #{type}"
       return
     end
-
+    @people << person unless person.nil?
     puts "#{type.capitalize} created successfully!"
   end
 
@@ -75,13 +87,19 @@ class App
     end
   end
 
+  def exit_program
+    puts 'Thanks! Exiting...'
+  end
+
+  private
+
+  def prompt_input(message)
+    puts message
+    gets.chomp
+  end
+
   def prompt_yes_no(message)
     val = prompt_input("#{message} (Y/N)").downcase
     %w[y yes].include?(val)
   end
-end
-
-def prompt_input(message)
-  puts message
-  gets.chomp
 end
