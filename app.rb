@@ -7,6 +7,7 @@ class App
   def initialize
     @books = []
     @people = []
+    @rentals = []
   end
 
   def list_all_books
@@ -70,7 +71,8 @@ class App
     end
     person_index = gets.chomp.to_i
     date = prompt_input('Date: ').to_i
-    Rental.new(date, @books[book_index], @people[person_index])
+    rental = Rental.new(date, @books[book_index], @people[person_index])
+    @rentals << rental unless rental.nil?
     puts 'Rental created successfully!'
   end
 
