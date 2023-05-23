@@ -7,7 +7,7 @@ class Classroom
   end
 
   def add_student(student)
-    student.classrom = self
     @student << student
+    student.classrom = self
   end
 end
