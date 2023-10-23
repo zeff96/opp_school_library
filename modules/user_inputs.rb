@@ -32,4 +32,12 @@ module UserInputHandler
   def prompt_date
     prompt_input('Date: ').to_i
   end
+
+  def prompt_index
+    gets.chomp.to_i
+  end
+
+  def prompt_person_id
+    prompt_input('Enter person ID: ').to_i
+  end
 end
