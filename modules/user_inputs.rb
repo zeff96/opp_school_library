@@ -40,4 +40,12 @@ module UserInputHandler
   def prompt_person_id
     prompt_input('Enter person ID: ').to_i
   end
+
+  def prompt_title
+    prompt_input('Title: ').capitalize
+  end
+
+  def prompt_author
+    prompt_input('Author: ').capitalize
+  end
 end
