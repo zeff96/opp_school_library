@@ -34,26 +34,6 @@ class App
     end
   end
 
-  def create_student
-    age = prompt_input('Age: ').to_i
-    name = prompt_input('Name: ')
-    parent_permission = prompt_yes_no('Has parent permission?')
-
-    student = Student.new(age, name: name, parent_permission: parent_permission)
-    @people << student unless student.nil?
-    puts 'Student created succesfully!'
-  end
-
-  def create_teacher
-    age = prompt_input('Age: ').to_i
-    name = prompt_input('Name: ')
-    specialization = prompt_input('Specialization: ')
-
-    teacher = Teacher.new(age, specialization, name: name)
-    @people << teacher unless teacher.nil?
-    puts 'Teacher created successfully!'
-  end
-
   def create_book
     title = prompt_input('Title: ')
     author = prompt_input('Author: ')
@@ -100,13 +80,23 @@ class App
 
   private
 
-  def prompt_input(message)
-    print message
-    gets.chomp
+  def create_student
+    age = prompt_input('Age: ').to_i
+    name = prompt_input('Name: ')
+    parent_permission = prompt_yes_no('Has parent permission?')
+
+    student = Student.new(age, name: name, parent_permission: parent_permission)
+    @people << student unless student.nil?
+    puts 'Student created succesfully!'
   end
 
-  def prompt_yes_no(message)
-    val = prompt_input("#{message} (Y/N): ").downcase
-    %w[y yes].include?(val)
+  def create_teacher
+    age = prompt_input('Age: ').to_i
+    name = prompt_input('Name: ')
+    specialization = prompt_input('Specialization: ')
+
+    teacher = Teacher.new(age, specialization, name: name)
+    @people << teacher unless teacher.nil?
+    puts 'Teacher created successfully!'
   end
 end
