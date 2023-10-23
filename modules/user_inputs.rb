@@ -28,4 +28,8 @@ module UserInputHandler
   def prompt_specialization
     prompt_input('Specialization: ').capitalize
   end
+
+  def prompt_date
+    prompt_input('Date: ').to_i
+  end
 end
