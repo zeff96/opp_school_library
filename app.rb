@@ -2,7 +2,7 @@ require_relative 'teacher'
 require_relative 'student'
 require_relative 'book'
 require_relative 'rental'
-require_relative './modules/user_inputs'
+require_relative 'modules/user_inputs'
 
 class App
   include UserInputHandler
