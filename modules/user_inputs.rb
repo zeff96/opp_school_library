@@ -9,7 +9,11 @@ module UserInputHandler
     %w[y yes n no].include?(val)
   end
 
-  def get_person_type
+  def prompt_person_type
     prompt_input('Do you want to create a Student(1) or a Teacher(2)? [input the number]: ').to_i
+  end
+
+  def prompt_age
+    prompt_input('Age: ').to_i
   end
 end
