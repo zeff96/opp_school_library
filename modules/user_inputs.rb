@@ -16,4 +16,8 @@ module UserInputHandler
   def prompt_age
     prompt_input('Age: ').to_i
   end
+
+  def prompt_name
+    prompt_input('Name: ').capitalize
+  end
 end
