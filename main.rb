@@ -1,5 +1,5 @@
 require_relative 'app'
-require_relative 'console'
+require_relative 'menu'
 
 def main
   app = App.new
