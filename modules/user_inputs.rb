@@ -24,4 +24,8 @@ module UserInputHandler
   def prompt_parent_permission
     prompt_yes_no('Has parent permission?')
   end
+
+  def prompt_specialization
+    prompt_input('Specialization: ').capitalize
+  end
 end
