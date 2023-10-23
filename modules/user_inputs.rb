@@ -20,4 +20,8 @@ module UserInputHandler
   def prompt_name
     prompt_input('Name: ').capitalize
   end
+
+  def prompt_parent_permission
+    prompt_yes_no('Has parent permission?')
+  end
 end
