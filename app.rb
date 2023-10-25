@@ -3,10 +3,14 @@ require_relative 'student'
 require_relative 'book'
 require_relative 'rental'
 require_relative 'modules/user_inputs'
+require_relative 'storage'
 
 class App
   include UserInputHandler
   def initialize
+    @books_json = DataManager.new('data/books.json')
+    @people_json = DataManager.new('data/people.json')
+    @rentals_json = DataManager.new('data/rentals.json')
     @books = []
     @people = []
     @rentals = []
