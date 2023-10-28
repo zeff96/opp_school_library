@@ -11,4 +11,8 @@ class Teacher < Person
   def can_use_services?
     true
   end
+
+  def as_json(_options = {})
+    super.merge(specialization: @specialization, class_name: 'Teacher')
+  end
 end
