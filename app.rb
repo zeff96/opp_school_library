@@ -9,7 +9,7 @@ class App
   include UserInputHandler
   def initialize
     @data_manager = DataManager.new('data')
-    @books = []
+    @books = load_books_data
     @people = load_people_data
     @rentals = []
   end
@@ -124,5 +124,11 @@ class App
     json_data = @books.map(&:as_json)
 
     @data_manager.save_to_json(json_data, filename)
+  end
+
+  def load_books_data
+    @data_manager.load_from_json('books.json', []) do |json_data|
+      @data_manager.decentralize_books(json_data)
+    end
   end
 end
