@@ -8,4 +8,12 @@ class Rental
     @person = person
     person.rental << self
   end
+
+  def as_json
+    {
+      date: @date,
+      person: @person.as_json,
+      book: @book.as_json
+    }
+  end
 end
