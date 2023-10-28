@@ -22,6 +22,16 @@ class DataManager
     end
   end
 
+  def decentralize_person(data)
+    data.map do |item|
+      if item['class_name'] == 'Student'
+        Student.new(item['age'], name: item['name'], parent_permission: item['parent_permission'])
+      elsif item['class_name'] == 'Teacher'
+        Teacher.new(item['age'], item['specialization'], name: item['name'])
+      end
+    end
+  end
+
   private
 
   def create_directory_if_not_exits
