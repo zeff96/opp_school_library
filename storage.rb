@@ -12,12 +12,13 @@ class DataManager
     File.write(File.join(@data_directory, filename), JSON.generate(data))
   end
 
-  def load_from_json(filename, default_value)
+  def load_from_json(filename, default_value, &block)
     file_path = File.join(@data_directory, filename)
     return default_value unless File.exist?(file_path)
 
-    File.open(@filename, 'r') do |file|
-      JSON.parse(file.read, symbolize_names: true)
+    File.open(file_path, 'r') do |file|
+      json_data = JSON.parse(file.read, symbolize_names: true)
+      block.call(json_data)
     end
   end
 
