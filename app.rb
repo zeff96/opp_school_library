@@ -11,7 +11,7 @@ class App
     @data_manager = DataManager.new('data')
     @books = load_books_data
     @people = load_people_data
-    @rentals = []
+    @rentals = load_rentals_data
   end
 
   def list_all_books
@@ -137,5 +137,11 @@ class App
     json_data = @rentals.map(&:as_json)
 
     @data_manager.save_to_json(json_data, filename)
+  end
+
+  def load_rentals_data
+    @data_manager.load_from_json('rentals.json', []) do |json_data|
+      @data_manager.decentralize_rentals(json_data)
+    end
   end
 end
