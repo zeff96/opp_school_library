@@ -38,6 +38,14 @@ class DataManager
     end
   end
 
+  def decentralize_rentals(data)
+    data.map do |item|
+      person_data = decentralize_person(item[:person])
+      book_data = decentralize_books
+      Rental.new(item[:data], person_data, book_data)
+    end
+  end
+
   private
 
   def create_directory_if_not_exits
