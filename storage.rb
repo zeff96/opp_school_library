@@ -32,6 +32,12 @@ class DataManager
     end
   end
 
+  def decentralize_books(data)
+    data.map do |item|
+      Book.new(item[:title], item[:author])
+    end
+  end
+
   private
 
   def create_directory_if_not_exits
