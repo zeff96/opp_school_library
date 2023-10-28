@@ -29,6 +29,15 @@ class Person < Nameable
     Rental.new(person, self, date)
   end
 
+  def as_json(_options = {})
+    {
+      id: @id,
+      age: @age,
+      name: @name,
+      parent_permission: @parent_permission
+    }
+  end
+
   private
 
   def of_age?
