@@ -8,9 +8,7 @@ require_relative 'storage'
 class App
   include UserInputHandler
   def initialize
-    @books_json = DataManager.new('data/books.json')
-    @people_json = DataManager.new('data/people.json')
-    @rentals_json = DataManager.new('data/rentals.json')
+    @data_manager = DataManager.new('data')
     @books = []
     @people = []
     @rentals = []
@@ -68,6 +66,7 @@ class App
   end
 
   def exit_program
+    save_person_json
     puts 'Thanks! Exiting...'
   end
 
@@ -104,5 +103,12 @@ class App
     else
       puts 'Person not found!'
     end
+  end
+
+  def save_person_json
+    filename = 'people.json'
+    people_json = @people.map(&:as_json)
+
+    @data_manager.save_to_json(people_json, filename)
   end
 end
