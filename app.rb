@@ -131,4 +131,11 @@ class App
       @data_manager.decentralize_books(json_data)
     end
   end
+
+  def save_rentals_json
+    filename = 'rentals.json'
+    json_data = @rentals.map(&:as_json)
+
+    @data_manager.save_to_json(json_data, filename)
+  end
 end
