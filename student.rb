@@ -12,6 +12,10 @@ class Student < Person
     classroom.student.push(self) unless classroom.student.include?(self)
   end
 
+  def as_json(_options = {})
+    super.merge(class_name: 'Student')
+  end
+
   def play_hooky
     '¯(ツ)/¯'
   end
