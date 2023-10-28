@@ -40,9 +40,16 @@ class DataManager
 
   def decentralize_rentals(data)
     data.map do |item|
-      person_data = decentralize_person(item[:person])
-      book_data = decentralize_books
-      Rental.new(item[:data], person_data, book_data)
+      person_data = if item[:person][:class_name] == 'Student'
+                      Student.new(item[:person][:age], name: item[:person][:name],
+                                                       parent_permission: item[:person][:parent_permission])
+                    elsif item[:person][:class_name] == 'Teacher'
+                      Teacher.new(item[:person][:age], item[:person][:specialization], name: item[:person][:name])
+
+                    end
+
+      book_data = Book.new(item[:book][:title], item[:book][:author])
+      Rental.new(item[:date], person_data, book_data)
     end
   end
 

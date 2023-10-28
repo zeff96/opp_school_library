@@ -30,7 +30,7 @@ module UserInputHandler
   end
 
   def prompt_date
-    prompt_input('Date: ').to_i
+    prompt_input('Date: ')
   end
 
   def prompt_index

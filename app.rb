@@ -1,3 +1,4 @@
+require_relative 'person'
 require_relative 'teacher'
 require_relative 'student'
 require_relative 'book'
@@ -68,6 +69,7 @@ class App
   def exit_program
     save_person_json
     save_books_json
+    save_rentals_json
     puts 'Thanks! Exiting...'
   end
 

@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2023-10-10",
+    "person": {
+      "id": 1000,
+      "age": 50,
+      "name": "Mark",
+      "parent_permission": true,
+      "specialization": "Engineer",
+      "class_name": "Teacher"
+    },
+    "book": {
+      "title": "Mathematics",
+      "author": "Longhorn"
+    }
+  }
+]
