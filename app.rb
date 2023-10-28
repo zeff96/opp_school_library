@@ -67,6 +67,7 @@ class App
 
   def exit_program
     save_person_json
+    save_books_json
     puts 'Thanks! Exiting...'
   end
 
@@ -116,5 +117,12 @@ class App
     @data_manager.load_from_json('people.json', []) do |json_data|
       @data_manager.decentralize_person(json_data)
     end
+  end
+
+  def save_books_json
+    filename = 'books.json'
+    json_data = @books.map(&:as_json)
+
+    @data_manager.save_to_json(json_data, filename)
   end
 end
