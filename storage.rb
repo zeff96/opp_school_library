@@ -6,8 +6,10 @@ class DataManager
     @data_directory = data_directory
   end
 
-  def save_to_json(data)
-    File.write(@filename, JSON.generate(data))
+  def save_to_json(data, filename)
+    create_directory_if_not_exits
+
+    File.write(File.join(@data_directory, filename), JSON.generate(data))
   end
 
   def load_from_json
