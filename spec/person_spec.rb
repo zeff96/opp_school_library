@@ -45,4 +45,15 @@ describe Person do
       expect(person.rental.length).to eq 1
     end
   end
+
+  context 'Converts person attrubutes to hash' do
+    it 'return person hash' do
+      expect(person.as_json).to eq(
+        id: person.id,
+        age: person.age,
+        name: person.name,
+        parent_permission: person.parent_permission
+      )
+    end
+  end
 end
