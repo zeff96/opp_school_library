@@ -14,5 +14,9 @@ describe Person do
     it 'returns persons parent_permission' do
       expect(person.parent_permission).to be_falsy
     end
+
+    it 'returns empty rental' do
+      expect(person.rental).to be_empty
+    end
   end
 end
