@@ -2,6 +2,7 @@ require_relative '../person'
 
 describe Person do
   let(:person) { Person.new(22, name: 'Test', parent_permission: false) }
+
   context 'validates presence of person class attributes' do
     it 'returns person age' do
       expect(person.age).to eq(22)
@@ -17,6 +18,12 @@ describe Person do
 
     it 'returns empty rental' do
       expect(person.rental).to be_empty
+    end
+  end
+
+  context 'can use services method' do
+    it 'returns true for can use services' do
+      expect(person.can_use_services?).to be_truthy
     end
   end
 end
