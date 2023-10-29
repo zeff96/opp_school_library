@@ -21,9 +21,13 @@ describe Person do
     end
   end
 
-  context 'can use services method' do
+  context 'can use services method and correct name method' do
     it 'returns true for can use services' do
       expect(person.can_use_services?).to be_truthy
+    end
+
+    it 'correct name method returns person correct name' do
+      expect(person.correct_name).to eq 'Test'
     end
   end
 end
