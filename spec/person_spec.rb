@@ -1,4 +1,6 @@
 require_relative '../person'
+require_relative '../book'
+require_relative '../rental'
 
 describe Person do
   let(:person) { Person.new(22, name: 'Test', parent_permission: false) }
@@ -28,6 +30,19 @@ describe Person do
 
     it 'correct name method returns person correct name' do
       expect(person.correct_name).to eq 'Test'
+    end
+  end
+
+  context 'add rental method test' do
+    let(:book) { Book.new('Mathematics', 'Longhorn') }
+    let(:rental) { Rental.new('2023-10-10', book, person) }
+
+    before(:each) do
+      person.add_rental('2023-10-10', book)
+    end
+
+    it 'Add person rentals' do
+      expect(person.rental.length).to eq 1
     end
   end
 end

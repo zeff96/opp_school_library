@@ -3,7 +3,7 @@ require_relative 'decorator'
 require_relative 'rental'
 
 class Person < Nameable
-  attr_reader :id
+  attr_reader :id, :book
   attr_accessor :name, :age, :parent_permission, :rental
 
   def initialize(age, name: 'Unknown', parent_permission: true)
@@ -25,8 +25,8 @@ class Person < Nameable
     @name
   end
 
-  def add_rental(person, date)
-    Rental.new(person, self, date)
+  def add_rental(date, book)
+    Rental.new(date, book, self)
   end
 
   def as_json(_options = {})
