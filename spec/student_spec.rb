@@ -25,4 +25,10 @@ describe Student do
       expect(classroom.students).to include(student)
     end
   end
+
+  context 'Validates student method test' do
+    it 'validates student play hooky method' do
+      expect(student.play_hooky).to eq '¯(ツ)/¯'
+    end
+  end
 end
