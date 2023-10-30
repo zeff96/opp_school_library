@@ -17,4 +17,14 @@ describe Book do
       expect(book.rental).to be_empty
     end
   end
+
+  context 'Book method test' do
+    let(:person) { Person.new(28, name: 'test', parent_permission: false) }
+    let(:rental) { Rental.new('2023-01-01', person, book) }
+
+    it 'it add book rental' do
+      book.add_rental('2023-01-01', person)
+      expect(book.rental.length).to eq 1
+    end
+  end
 end
