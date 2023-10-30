@@ -12,5 +12,9 @@ describe Book do
     it 'returns book author' do
       expect(book.author).to eq 'Longhorn'
     end
+
+    it 'returns empty rental' do
+      expect(book.rental).to be_empty
+    end
   end
 end
