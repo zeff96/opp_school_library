@@ -12,5 +12,17 @@ describe Student do
     it 'returns student name' do
       expect(student.name).to eq 'test'
     end
+
+    it 'returns student parent permission' do
+      expect(student.parent_permission).to be true
+    end
+  end
+
+  context 'Assigns student to a given class' do
+    let(:classroom) { Classroom.new('Computer') }
+    it 'Assigns student to a classroom' do
+      student.classroom = (classroom)
+      expect(classroom.students).to include(student)
+    end
   end
 end
