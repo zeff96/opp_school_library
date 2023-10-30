@@ -26,5 +26,14 @@ describe Book do
       book.add_rental('2023-01-01', person)
       expect(book.rental.length).to eq 1
     end
+
+    it 'converts book attributes to hash' do
+      @hash = {
+        title: book.title,
+        author: book.author
+      }
+
+      expect(book.as_json).to eq @hash
+    end
   end
 end
