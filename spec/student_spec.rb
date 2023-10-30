@@ -8,5 +8,9 @@ describe Student do
     it 'returns students age' do
       expect(student.age).to eq 15
     end
+
+    it 'returns student name' do
+      expect(student.name).to eq 'test'
+    end
   end
 end
