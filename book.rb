@@ -10,7 +10,7 @@ class Book
   end
 
   def add_rental(person, date)
-    Rental.new(person, self, date)
+    Rental.new(date, person, self)
   end
 
   def as_json(_options = {})
