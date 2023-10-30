@@ -8,5 +8,9 @@ describe Book do
     it 'returns book title' do
       expect(book.title).to eq 'Mathematics'
     end
+
+    it 'returns book author' do
+      expect(book.author).to eq 'Longhorn'
+    end
   end
 end
