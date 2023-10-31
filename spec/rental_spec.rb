@@ -15,5 +15,9 @@ describe Rental do
     it 'returns rental book' do
       expect(rental.book).to eq book
     end
+
+    it 'returns rental person' do
+      expect(rental.person).to eq person
+    end
   end
 end
