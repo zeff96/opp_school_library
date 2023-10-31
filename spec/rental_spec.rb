@@ -20,4 +20,16 @@ describe Rental do
       expect(rental.person).to eq person
     end
   end
+
+  context 'Validates rental methods' do
+    it 'returns rental hash' do
+      @hash = {
+        date: rental.date,
+        book: book.as_json,
+        person: person.as_json
+      }
+
+      expect(rental.as_json).to eq @hash
+    end
+  end
 end
