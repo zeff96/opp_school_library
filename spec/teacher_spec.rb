@@ -7,5 +7,9 @@ describe Teacher do
     it 'returns \teacher\'s age' do
       expect(teacher.age).to eq 50
     end
+
+    it 'returns \teacher\'s speciliazation' do
+      expect(teacher.specialization).to eq 'Engineer'
+    end
   end
 end
