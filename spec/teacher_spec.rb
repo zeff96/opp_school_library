@@ -21,5 +21,17 @@ describe Teacher do
     it 'returns true for can use services' do
       expect(teacher.can_use_services?).to be true
     end
+
+    it 'returns teacher hash' do
+      @hash = {
+        id: teacher.id,
+        age: teacher.age,
+        specialization: teacher.specialization,
+        name: teacher.name,
+        parent_permission: true,
+        class_name: 'Teacher'
+      }
+      expect(teacher.as_json).to eq @hash
+    end
   end
 end
