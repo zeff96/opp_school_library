@@ -30,5 +30,17 @@ describe Student do
     it 'validates student play hooky method' do
       expect(student.play_hooky).to eq '¯(ツ)/¯'
     end
+
+    it 'returns student hash attributes' do
+      @hash = {
+        id: student.id,
+        age: student.age,
+        name: student.name,
+        parent_permission: true,
+        class_name: 'Student'
+      }
+
+      expect(student.as_json).to eq @hash
+    end
   end
 end
