@@ -11,5 +11,9 @@ describe Rental do
     it 'returns rental date' do
       expect(rental.date).to eq '2023-01-01'
     end
+
+    it 'returns rental book' do
+      expect(rental.book).to eq book
+    end
   end
 end
