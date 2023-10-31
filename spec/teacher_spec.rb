@@ -16,4 +16,10 @@ describe Teacher do
       expect(teacher.name).to eq 'Mark'
     end
   end
+
+  context 'Validates teacher method' do
+    it 'returns true for can use services' do
+      expect(teacher.can_use_services?).to be true
+    end
+  end
 end
