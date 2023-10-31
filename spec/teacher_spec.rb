@@ -11,5 +11,9 @@ describe Teacher do
     it 'returns \teacher\'s speciliazation' do
       expect(teacher.specialization).to eq 'Engineer'
     end
+
+    it 'returns \teacher\'s name' do
+      expect(teacher.name).to eq 'Mark'
+    end
   end
 end
