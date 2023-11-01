@@ -9,6 +9,7 @@ describe CapitalizeDecorator do
     end
 
     it 'capitalizes \person\'s name' do
+      p @person
       expect(@capitalize.correct_name).to eq 'Maximillus'
     end
   end
